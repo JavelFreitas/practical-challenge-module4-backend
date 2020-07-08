@@ -36,7 +36,7 @@ const findAll = async (req, res) => {
   try {
     const grades = await db.gradesModel.find(condition);
 
-    res.status(200).send({ grades });
+    res.status(200).send(grades);
 
     logger.info(`GET /grade`);
   } catch (error) {
@@ -56,8 +56,8 @@ const findOne = async (req, res) => {
     if (singleGrade.length === 0) {
       throw new Error(`grade ${singleGrade} not found`);
     }
-
-    res.status(200).send({ singleGrade });
+    
+    res.status(200).send(singleGrade[0]);
 
     logger.info(`GET /grade - ${id}`);
   } catch (error) {
@@ -72,8 +72,11 @@ const update = async (req, res) => {
       message: 'Dados para atualizacao vazio',
     });
   }
-
+  
   const id = req.params.id;
+  console.log(id);
+  console.log(req.body);
+  
 
   try {
     await db.gradesModel.findOneAndUpdate(
