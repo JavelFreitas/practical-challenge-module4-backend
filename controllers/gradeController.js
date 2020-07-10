@@ -108,7 +108,6 @@ const remove = async (req, res) => {
 };
 
 const removeAll = async (req, res) => {
-  const id = req.params.id;
 
   try {
     const gradeTypes = await transactionModel.distinct("type");
